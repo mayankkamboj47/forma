@@ -1,4 +1,5 @@
-!Name|John Doe : string
+!Name|John Doe
 Age|18
 !Masochist ? : (yes, no)
+HisEmail|john@abc.com
 Food|Apple : string

@@ -1,4 +1,5 @@
 const lineExpr = /^(\W*)([^|]+)(\|.+)*\s*:\s*(.+)$/;
+const lineExpr2 = /^(\W*)([^|]+)(\|.+)*\s*/;
 const slugify = require('slugify');
 const fs = require('fs').promises;
 const process = require('process');
@@ -9,9 +10,9 @@ function parse(code){
 		      children : []};
 	for(let line of code.split('\n')) {
 		let structure;
-		if(structure=line.match(lineExpr)) {
+		if(structure=(line.match(lineExpr) || line.match(lineExpr2))) {
 			let [initials, name, placeholder, rest] = structure.slice(1);
-			if(rest[rest.length-1]==',')
+			if(rest && rest[rest.length-1]==',')
 				rest = rest.slice(0, rest.length - 1);
 			root.children.push(
 				parseChild(
@@ -25,7 +26,7 @@ function parse(code){
 	}
 	return root;
 }
-function parseChild(initials, name, placeholder, rest){
+function parseChild(initials, name, placeholder, rest=''){
 	if(placeholder)
 		placeholder = placeholder.slice(1).trim();
 	const nameSlug = slugify(name);
@@ -54,11 +55,11 @@ function parseChild(initials, name, placeholder, rest){
 	
 	function findTypeFromPlaceholder(placeholder){
 		const specials = {
-			'email' : /[A-Za-z][A-Za-z0-9]*@[A-Z][A-Za-z0-9]*\.[a-z]+/	
+			'email' : /[A-Za-z][A-Za-z0-9]*\@[A-Za-z][A-Za-z0-9]*\.[a-z]+/	
 		};
 		let match;
 		if(!isNaN(parseInt(placeholder))) return 'int';
-		else if(Object.entries(specials).some(([entry, regex])=>(match=placeholder.match(regex))))
+		else if(Object.entries(specials).some(([entry, regex])=>(match=placeholder.match(regex)?entry:null)))
 			return match;
 		else return 'string';
 	}
