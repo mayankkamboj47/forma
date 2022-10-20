@@ -1,0 +1,13 @@
+form > label{
+	display : flex;
+	justify-content:flex-end;
+}
+form > label > input{
+	margin-left:1rem;
+}
+form{
+	display:flex;
+	flex-direction:column;
+	max-width:fit-content;
+	gap : 0.3rem;
+}

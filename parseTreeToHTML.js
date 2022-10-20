@@ -8,7 +8,7 @@ function htmlTags(type){
 	}
 	const cinput = (type)=> (
 		({id, name, required, children}) => (
-			`<label for=${id}>${name}${children.map(s=>`<label for=${s}>${s}<input type=${type} name=${id} id=${s} /> </label>`).join('')}`
+			`<label for=${id}>${name}${children.map(s=>`<label for=${s}>${s}<input type=${type} name=${id} id=${s} /> </label>`).join('')}</label>`
 		))
 	const types = {
 		'form' : ({action, method, children})=>`<form>${children.map(generateHTML).join('\n')}
@@ -22,4 +22,23 @@ function htmlTags(type){
 	return types[type];
 }
 
-console.log(generateHTML(require('./parsed.json')))
+console.log(boilerplate(generateHTML(require('./parsed.json'))))
+
+
+
+
+
+// ===========  HELPER FUNCTIONS
+
+function boilerplate(str){
+	return (
+`
+<!DOCTYPE html>
+
+<meta charset='utf-8' />
+<link rel='stylesheet' href='./css/basic.css' />
+
+${str}
+`
+	);
+}
