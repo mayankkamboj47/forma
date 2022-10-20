@@ -1,1 +1,19 @@
 parsed.json should now be translated into form.js and server.js
+form.js -> parseTreeToHTML.js is now done
+parseTreeToServer.js -> To do
+
+First, refactor and clean up the software. Add tests so that we can make sure that it is working the way it should.
+
+Later, add pragma, a precompiler which "autocompletes" a forma file. Eg. 
+Name
+Age
+Gender
+Email
+Do you like surprises?
+
+Changes to: 
+Name|John Doe
+Age|22
+Gender:(male,female,prefer not to say)
+Email|johndoe@gmail.com
+Do you like surprises?(yes,no) 

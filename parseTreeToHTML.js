@@ -8,7 +8,7 @@ function htmlTags(type){
 	}
 	const cinput = (type)=> (
 		({id, name, required, children}) => (
-			`<label for=${id}>${name}${children.map(s=>`<label for=${s}>${s}<input type=${type} name=${id} id=${s} /> </label>`).join('')}</label>`
+			`<label for=${id}>${name}${children.map(s=>`<label for='${s}'>${s}<input type='${type}' name='${id}' id='${s}' /> </label>`).join('\n')}</label>`
 		))
 	const types = {
 		'form' : ({action, method, children})=>`<form>${children.map(generateHTML).join('\n')}

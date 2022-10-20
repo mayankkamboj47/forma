@@ -41,7 +41,7 @@ function parseChild(initials, name, placeholder, rest=''){
 		node.type = 'radios';
 		node.children = match[1].split(',');
 	}
-	else if(placeholder && (match=findTypeFromPlaceholder(placeholder))){
+	else if((match=findTypeFromPlaceholder(placeholder))){
 		node.type = match;
 	}
 	else if(match=rest.match(/\w+/)){
@@ -53,7 +53,7 @@ function parseChild(initials, name, placeholder, rest=''){
 	return node;
 
 	
-	function findTypeFromPlaceholder(placeholder){
+	function findTypeFromPlaceholder(placeholder=''){
 		const specials = {
 			'email' : /[A-Za-z][A-Za-z0-9]*\@[A-Za-z][A-Za-z0-9]*\.[a-z]+/	
 		};
