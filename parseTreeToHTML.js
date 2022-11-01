@@ -1,9 +1,5 @@
-function generateHTML(node){
-	return htmlTags(node.type)(node);
-}
-
-const formSubmitURL = 'http://localhost:3000';
 function htmlTags(type){
+	const formSubmitURL = 'http://localhost:3000';
 	const input = (type) => {
 		return ({id, name, required, placeholder})=>`<label for="${id}"><span class='main-label'>${name}</span><input type='${type}' name='${id}' ${required? 'required' : ''} ${placeholder ? `placeholder="${placeholder}"` : ''}/></label>`
 	}
@@ -12,7 +8,7 @@ function htmlTags(type){
 			`<label for=${id}><span class='main-label'>${name}</span>${children.map(s=>`<label for='${s}'>${s}<input type='${type}' name='${id}' id='${s}' value="${s}" ${required?"required=required" : ""}/> </label>`).join('\n')}</label>`
 		))
 	const types = {
-		'form' : ({action, method, children})=>`<form action="${formSubmitURL}" method="POST">${children.map(generateHTML).join('\n')}
+		'form' : ({action, method, children})=>`<form action="${formSubmitURL}" method="POST">${children.map(c=>htmlTags(c.type)(c)).join('\n')}
 							<input type="submit" value="Submit" /></form>`,
 		'string': input('text'),
 		'number': input('number'),
@@ -22,12 +18,6 @@ function htmlTags(type){
 	};
 	return types[type];
 }
-
-console.log(boilerplate(generateHTML(require('./parsed.json'))))
-
-
-
-
 
 // ===========  HELPER FUNCTIONS
 
@@ -42,4 +32,8 @@ function boilerplate(str){
 ${str}
 `
 	);
+}
+
+module.exports = function(node){
+	return boilerplate(htmlTags(node.type)(node));
 }

@@ -6,7 +6,7 @@ add :
 Name
 Age : number
 ```
-Now, execute the make command and it will generate everything for you. Start the server using `node server.js` and visit `parsed.html`. All of the submitted data will be stored in `formData.json`, which lives on the backend.
+Now, execute the command 'node script.js form.forma' and it will generate everything for you. Start the server using `node server.js` and visit `out.html`. All of the submitted data will be stored in `formData.json`, which is a global in server.js for now.
 
 Here is a more complete form which demonstrates a lot of the features : 
 ```
@@ -16,7 +16,7 @@ Email|johndoe@mail.org
 Pick only one fruit : (apples, bananas, oranges)
 Pick any fruits     : (apples, bananas, oranges)
 !Must pick one fruit : (apples, bananas, oranges)
-!Must select all of these : [I sell my data, I sell my rights, I sell my soul !]
+!Must select all of these : [I sell my data, I sell my rights, I sell my soul]
 ```
 
 # Syntax of a line
@@ -50,14 +50,13 @@ type : string,
 children : Further subtrees
 ```
 
-To use the parser on a file, issue the filename as a second argument parser.js
+To use the parser on a file, issue the filename as a second argument to script.js
 ```
-node parser.js <myFormaFile>.forma
+node script.js <myFormaFile>.forma
 ```
-The parse tree is by default saved in parsed.json, but we shall include the option for the
-user to customise this in the future. 
+The parse tree is by default saved in parsed.json, but can be customised in script.js
 
-This parse tree is used further by `parseTreeToHTML.js` which generates an HTML form. It is also used by server.js to get some type metadata for the form. 
+This parse tree is used by server.js to get some type metadata for the form. 
 
 # Some rough ideas
 ```

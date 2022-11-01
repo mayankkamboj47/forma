@@ -2,7 +2,13 @@ const slugify = require('slugify');
 const fs = require('fs').promises;
 const process = require('process');
 
-// Each line in forma follows one of two formats below
+/**
+ * 
+ * @param {String} code The input forma program
+ * @returns {Object} The parse tree
+ */
+function parse(code){
+	// Each line in forma follows one of two formats below
 // The format consists of the following parts, all optional except name  : 
 // (\W+)		The initials
 // ([^|]+)		The name
@@ -13,12 +19,6 @@ const process = require('process');
 const syntax1 = /^(\W*)([^|]+)(\|.+)*\s*:\s*(.+)$/;
 const syntax2 = /^(\W*)([^|]+)(\|.+)*\s*/;
 
-/**
- * 
- * @param {String} code The input forma program
- * @returns {Object} The parse tree
- */
-function parse(code){
 	const root = {id : 'formaForm',
 		      type : 'form',
 		      children : []};
@@ -87,4 +87,5 @@ function parseChild(initials, name, placeholder, rest=''){
 	}
 }
 
-fs.readFile(process.argv[2], 'utf-8').then(parse).then(JSON.stringify).then(s=>fs.writeFile("parsed.json", s));
+module.exports.parse = parse;
+module.exports.parseChild = parseChild;

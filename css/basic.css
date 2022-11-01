@@ -3,4 +3,5 @@ label{
 }
 .main-label {
 	display:block;
+	font-weight: bold;
 }

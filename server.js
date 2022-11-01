@@ -1,15 +1,26 @@
 const {Server} = require('http');
 const form = require('formidable')({});
-const parseTree = require('./parsed.json');
+const formDataFile = "./out/formData.json";
+const parseTree = require("./out/parsed.json");
 
 Object.prototype.map = objMap; 
 const types = parseTreeToTypeTable(parseTree);
 
-const formData = require('./formData.json');
+const formData = (function importAsJSON(filename){
+	const fs = require('fs');
+	try {
+		return JSON.parse(fs.readFileSync(filename, 'utf-8'));
+	} catch (e){
+		if(e.code!=='ENOENT') throw e;
+		fs.writeFileSync(filename, "[]");
+		return [];
+	}
+})(formDataFile);
+
 function saveData(data){
 	const fs = require('fs').promises;
 	formData.push(data);
-	fs.writeFile('formData.json', JSON.stringify(formData));
+	fs.writeFile(formDataFile, JSON.stringify(formData));
 }
 
 (new Server((req, res)=>{
@@ -28,9 +39,6 @@ function saveData(data){
 
 function parseTreeToTypeTable(tree){
 	if(tree.type!=='form') throw new Error('rootNode.type should be "form". Found ' + tree.type);
-	// table contains a key mapped to a type. Key is the id, and the type is
-	// a function that takes a value and coerces it to the appropriate type,
-	// or throws an error
 	return Object.fromEntries(tree.children.map(child=>[child.id, type(child)]));
 
 	function type(child) {
@@ -49,6 +57,8 @@ function parseTreeToTypeTable(tree){
 		}
 	}
 }
+
+// Helpers
 function objMap(func){
 	return Object.fromEntries(Object.entries(this).map(a=>func(...a)));
 }
