@@ -1,8 +1,0 @@
-name : string,
-email: email,
-!id  : string,
-gender:(male,female,prefer not to say)
-which universities do you prefer? : [Ashoka,Berkeley,CMU,TUM Munich]
-Do you like to stay up at night?  : (yes, no)
-Apples or oranges ? : (apples, oranges, both, you could have used checkboxes)
-!this : string

@@ -1,13 +1,6 @@
-form > label{
-	display : flex;
-	justify-content:flex-end;
+label{
+	margin-bottom:1rem;
 }
-form > label > input{
-	margin-left:1rem;
-}
-form{
-	display:flex;
-	flex-direction:column;
-	max-width:fit-content;
-	gap : 0.3rem;
+.main-label {
+	display:block;
 }
