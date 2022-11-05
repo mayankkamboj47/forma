@@ -1,9 +1,5 @@
-Name|Lisa Brunner
-Email|lisab@gmail.com,
-ID|(dddd-dddd)
-Age|19
-!Gender:(male,female,prefer not to say)
-Which universities do you prefer? : [Ashoka,Berkeley,CMU,TUM Munich]
-Do you like to stay up at night?  : (yes, no)
-Apples or oranges ? : (apples, oranges, both, you could have used checkboxes)
-!Must select all of these : [I sell my data, I sell my rights, I sell everything !]
+Age|18
+!Sex : [I don't care]
+Name|Donna Fey
+Email|donna@gmail.com
+Whatever : string

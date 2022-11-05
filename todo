@@ -15,6 +15,10 @@ Email|johndoe@gmail.com
 Do you like surprises?(yes,no)
 
 --------------------------------------------------------------------
+Bugs
+--------------------------------------------------------------------
+1. Adding a numerical placeholder isn't enough for forma to detect number fields 
+--------------------------------------------------------------------
 Adding tests
 --------------------------------------------------------------------
 1. Unit tests for each file - will help me think deeper about how to clean each file

@@ -75,17 +75,18 @@ function parseChild(initials, name, placeholder, rest=''){
 	return node;
 
 	
-	function findTypeFromPlaceholder(placeholder=''){
-		const specials = {
-			'email' : /[A-Za-z][A-Za-z0-9]*\@[A-Za-z][A-Za-z0-9]*\.[a-z]+/	
-		};
-		let match;
-		if(!isNaN(parseInt(placeholder))) return 'number';
-		else if(Object.entries(specials).some(([entry, regex])=>(match=placeholder.match(regex)?entry:null)))
-			return match;
-		else return 'string';
-	}
+}
+function findTypeFromPlaceholder(placeholder=''){
+	const specials = {
+		'email' : /[A-Za-z][A-Za-z0-9]*\@[A-Za-z][A-Za-z0-9]*\.[a-z]+/	
+	};
+	let match;
+	if(!isNaN(parseInt(placeholder))) return 'number';
+	else if(Object.entries(specials).some(([entry, regex])=>(match=placeholder.match(regex)?entry:null)))
+		return match;
+	else return 'string';
 }
 
 module.exports.parse = parse;
 module.exports.parseChild = parseChild;
+module.exports.findTypeFromPlaceholder = findTypeFromPlaceholder;
