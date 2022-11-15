@@ -1,10 +1,11 @@
 function htmlTags(type) {
 	const formSubmitURL = 'http://localhost:3000';
-	// a version of input
+	// We have two types of inputs. Standard, also called input. And CInputs, used
+	// for checkboxes and radios
 	const input = (type) => {
 		return ({id, name, required, placeholder})=>`<label for="${id}"><span class='main-label'>${name}</span><input type='${type}' name='${id}' ${required? 'required' : ''} ${placeholder ? `placeholder="${placeholder}"` : ''}/></label>`
 	}
-	// just a different version of input used for checkboxes and radios. 
+	// Cinput : For radio and checkboxes
 	const cinput = (type)=> (
 		({id, name, required, children}) => (
 			`<label for=${id}><span class='main-label'>${name}</span>${children.map(s=>`<label for='${s}'>${s}<input type='${type}' name='${id}' id='${s}' value="${s}" ${required?"required=required" : ""}/> </label>`).join('\n')}</label>`
@@ -35,7 +36,7 @@ function boilerplate(str){
 
 ${str}
 `
-	);
+);
 }
 
 module.exports = function(node){

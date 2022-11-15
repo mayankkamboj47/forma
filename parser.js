@@ -30,10 +30,10 @@ const syntax2 = /^(\W*)([^|]+)(\|.+)*\s*/;
 				rest = rest.slice(0, rest.length - 1);
 			root.children.push(
 				parseChild(
-				initials,
-				name,
-				placeholder,
-				rest
+				initials.trim(),
+				name.trim(),
+				placeholder?placeholder.trim().slice(1) : undefined,
+				rest?.trim()
 				)
 			);
 		}
@@ -48,11 +48,11 @@ const syntax2 = /^(\W*)([^|]+)(\|.+)*\s*/;
  * @param {*} rest 
  * @returns A parse tree node
  */
-function parseChild(initials, name, placeholder, rest=''){
-	if(placeholder)
-		placeholder = placeholder.slice(1).trim();
+function parseChild(initials, name, placeholder, rest){
+
 	const nameSlug = slugify(name);
 	const node = { id : nameSlug, type : null, children : [], name, placeholder};
+	
 	if(initials=='!') node.required = "required";
 	let match;
 	if(rest && (match=rest.match(/\[(.*)\]/))){
@@ -69,12 +69,13 @@ function parseChild(initials, name, placeholder, rest=''){
 	else if(placeholder && (match=findTypeFromPlaceholder(placeholder))){
 		node.type = match;
 	}
-	else{
-		throw new Error(name, "has a bad value :", rest);
+	else if(rest===undefined){
+		node.type = 'string';
 	}
-	return node;
-
-	
+	else{
+		throw new Error(name + "has a bad value : " + rest);
+	}
+	return removeUndefined(node);
 }
 function findTypeFromPlaceholder(placeholder=''){
 	const specials = {
@@ -87,6 +88,14 @@ function findTypeFromPlaceholder(placeholder=''){
 	else return 'string';
 }
 
+
+//================ Helper functions ======================
+function removeUndefined(node){
+	const newNode = {};
+	for(let key in node) 
+		if(node[key]!==undefined && node[key]!==null) newNode[key] = node[key];
+	return newNode;
+}
 module.exports.parse = parse;
 module.exports.parseChild = parseChild;
 module.exports.findTypeFromPlaceholder = findTypeFromPlaceholder;

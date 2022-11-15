@@ -1,0 +1,9 @@
+Name|Lisa Brunner
+Email|lisab@gmail.com,
+ID|(dddd-dddd)
+Age|19
+!Gender:(male,female,prefer not to say)
+Which universities do you prefer? : [Ashoka,Berkeley,CMU,TUM Munich]
+Do you like to stay up at night?  : (yes, no)
+Apples or oranges ? : (apples, oranges, both, you could have used checkboxes)
+!Must select all of these : [I sell my data, I sell my rights, I sell my soul]
