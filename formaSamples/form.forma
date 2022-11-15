@@ -1,5 +1,5 @@
 Age|18
-!Sex : [Male, Female, Prefer not to say, I don't care]
+Sex : (Male, Female, Prefer not to say, I don't care)
 Name|Donna Fey
 Email|donna@gmail.com
-Whatever : string
+Address|2199 : string

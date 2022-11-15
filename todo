@@ -1,24 +1,13 @@
-First, refactor and clean up the software. Add tests so that we can make sure that it is working the way it should.
-
-Later, add pragma, a precompiler which "autocompletes" a forma file. Eg. 
+Add a precompiler which "autocompletes" a forma file. Eg. 
 Name
 Age
 Gender
 Email
 Do you like surprises?
 
-Changes to: 
+Changes to:
 Name|John Doe
 Age|22
 Gender:(male,female,prefer not to say)
 Email|johndoe@gmail.com
 Do you like surprises?(yes,no)
-
---------------------------------------------------------------------
-Bugs
---------------------------------------------------------------------
-1. Adding a numerical placeholder isn't enough for forma to detect number fields 
---------------------------------------------------------------------
-Adding tests
---------------------------------------------------------------------
-1. Unit tests for each file - will help me think deeper about how to clean each file

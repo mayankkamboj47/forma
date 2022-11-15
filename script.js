@@ -4,7 +4,7 @@ const treeToHTML = require('./parseTreeToHTML.js');
 
 // output files
 const htmlOutput = 'out/out.html';
-const parseTreeOutput = 'out/parsed.json';
+const parseTreeOutput = 'out/parseTree.json';
 
 
 fs.promises.readFile(process.argv[2], 'utf-8').then(parse).then(s=>{

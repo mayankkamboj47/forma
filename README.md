@@ -6,13 +6,17 @@ add :
 Name
 Age : number
 ```
-Now, execute the command 'node script.js form.forma' and it will generate everything for you. Start the server using `node server.js` and visit `out.html`. All of the submitted data will be stored in `formData.json`, which is a global in server.js for now.
+Now, execute the command 'node script.js form.forma' and it will generate everything for you. Now,
 
-Here is a more complete form which demonstrates a lot of the features : 
+1. Start the server using `node server.js <pathtoparsetree> <outputStorage>`. `<pathtoparsetree>` is where your parse tree is saved. By default, parse tree is stored in the `out` folder. `<outputStorage>` is a JSON file, where the data submitted by the users from the frontend is saved. If the filename provided in `outputStorage` doesn't exist, the file is created automatically. 
+2. Visit the frontend file. By default, this is `out/out.html`. 
+
+Here is a more complete form which demonstrates almost all the features as of Nov 15 2022: 
 ```
 Name
 Age|18
 Email|johndoe@mail.org
+Room Number which can take non-numerical input|211 : string
 Pick only one fruit : (apples, bananas, oranges)
 Pick any fruits     : (apples, bananas, oranges)
 !Must pick one fruit : (apples, bananas, oranges)
@@ -49,28 +53,12 @@ id : string,
 type : string,
 children : Further subtrees
 ```
+Apart from these, it may also contain 'placeholder', 'name', 'id' as of Nov 15 2022. The list of optional parameters is likely to grow as more options get added. 
 
 To use the parser on a file, issue the filename as a second argument to script.js
 ```
 node script.js <myFormaFile>.forma
 ```
-The parse tree is by default saved in parsed.json, but can be customised in script.js
+The parse tree is by default saved in parseTree.json. You can change this default in script.js
 
-This parse tree is used by server.js to get some type metadata for the form. 
-
-# Some rough ideas
-```
-{
-id : string, 
-type : form,
-children : [
-  {id : name, type : 'string', ...},
-  {id : gender, type : 'radios', ...},
-  {id : ...},
-]
-}
-``` 
-On the frontend, this can quickly yield a form, and on the backend,
-a hash table with ids associated with their corresponding types
-Finally, we can match the form with its corresponding types and call it a
-day ? 
+The parse tree is used by server.js to get some type metadata for the form. Its also passed to parseTreeToHTML module to create a HTML file. 

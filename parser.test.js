@@ -1,5 +1,3 @@
-// TODO : require parser.js and add some assertions about inputs and outputs.
-// You'll need deepCompare. 
 let parser = require('./parser.js');
 
 let findTypeFromPlaceholder = parser.findTypeFromPlaceholder;

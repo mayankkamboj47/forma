@@ -13,9 +13,8 @@ function parse(code){
 // (\W+)		The initials
 // ([^|]+)		The name
 // (\|.+)		The placeholder
-// (:\s*(.+)$)	The rest
+// (:\s*(.+)$)	The rest (contains type, and incase of radios and checkboxes, options)
 // see docs.md for more info
-
 const syntax1 = /^(\W*)([^|]+)(\|.+)*\s*:\s*(.+)$/;
 const syntax2 = /^(\W*)([^|]+)(\|.+)*\s*/;
 
@@ -49,7 +48,6 @@ const syntax2 = /^(\W*)([^|]+)(\|.+)*\s*/;
  * @returns A parse tree node
  */
 function parseChild(initials, name, placeholder, rest){
-
 	const nameSlug = slugify(name);
 	const node = { id : nameSlug, type : null, children : [], name, placeholder};
 	
