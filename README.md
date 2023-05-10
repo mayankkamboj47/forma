@@ -1,12 +1,18 @@
-# For the forma user
+# What is this
+Forma is a markup language to create web forms with minimal syntax.
 
-To create a form which asks for user's name and age, create a file called form.forma and
-add : 
+Here is a file called example.forma which creates a form with 2 inputs,
+a "Name" input, with default type text, and an age input, with type "number". 
 ```
 Name
 Age : number
 ```
-Now, execute the command 'node script.js form.forma' and it will generate everything for you. Now,
+# How to use
+
+Once you have a file with your form, such as `example.forma` above,
+execute the command 'node script.js form.forma' and it will generate everything for you. 
+
+The rest is to see the form live, if you want to do so. 
 
 1. Start the server using `node server.js <pathtoparsetree> <outputStorage>`. `<pathtoparsetree>` is where your parse tree is saved. By default, parse tree is stored in the `out` folder. `<outputStorage>` is a JSON file, where the data submitted by the users from the frontend is saved. If the filename provided in `outputStorage` doesn't exist, the file is created automatically. 
 2. Visit the frontend file. By default, this is `out/out.html`. 
